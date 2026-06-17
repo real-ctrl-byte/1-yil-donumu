@@ -120,7 +120,7 @@
     </section>
 
 <script>
-    // Loader'ı güvenli kapatan kod
+    // Yükleme ekranını sorunsuzca gizleyen güvenli tetikleyici
     window.addEventListener("load", () => {
         setTimeout(() => {
             const loader = document.getElementById("loader");
@@ -137,7 +137,7 @@
 
     function startQuestions() {
         const bgMusic = document.getElementById("bgMusic");
-        if(bgMusic) bgMusic.play().catch(e => console.log("Müzik otomatik başlatılamadı"));
+        if(bgMusic) bgMusic.play().catch(e => console.log("Müzik etkileşim öncesi başlatılamadı"));
         document.getElementById("questions").classList.remove("hidden");
         showQuestion();
         document.getElementById("questions").scrollIntoView({ behavior: "smooth" });
@@ -189,6 +189,14 @@
         if(msg) msg.style.display = msg.style.display === "block" ? "none" : "block";
     }
 
+    // Loader sorun yaratırsa ek güvenlik önlemi
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if(loader && loader.style.display !== "none") {
+            loader.style.display = "none";
+        }
+    }, 4000);
+
     function surprise() {
         createHearts();
         alert("🎀SÜRPRÜÜZZZZ I LAVV YOU SOO MUCHH BEBEĞİMM❤️");
@@ -200,7 +208,7 @@
         if(finalText) finalText.innerHTML = "IYIKII VAARRRSINN GÜZELİMM❤️";
     }
 
-    // Sayaç Ayarları
+    // Sayaç Ayarları (15 Haziran 2025 başlangıçlı)
     const startDate = new Date("2025-06-15T20:06:00");
     setInterval(() => {
         let now = new Date();
